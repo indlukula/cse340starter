@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  max-width: 48rem;
+  max-width: 64rem;
   margin: 0px auto 10px auto;
   font-family: "Courier New", Courier, monospace;
   background: 350px 350px;
@@ -19,6 +19,19 @@ body {
 
 body img {
   max-width: 100%;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  /*min-height: 100vh;*/
+  height: auto;
+  max-width: 48rem;
+  width: 100%;
+  margin: 0px auto 10px auto;
+  background-color: #ffffff;
+  border: solid 5px #01b0d3;
+  border-radius: 5px;
 }
 
 h1 {
@@ -41,25 +54,41 @@ h1 {
   border-radius: 5px;
 }
 
-/* Header */
-.header-content {
+/* header styles */
+header {
+  background-color: white;
+  color: black;
+  padding: 0px;
+  text-align: center;
+}
+
+#top-header {
+  margin: 10px 0;
+  padding: 10px;
   display: flex;
-  justify-items: left;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 1rem;
-  background-color: #f0f0f0;
+  align-items: center;
 }
 
-.header-content h1 {
-  font-size: 3rem;
-  margin-left: 0;
+#top-header .siteName {
+  font-size: 2em;
+  font-weight: bold;
 }
 
-.header-content #accLink {
-  margin-right: 0; /* Push to the right */
-  padding: 1rem;
+#top-header #tools {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+#top-header .siteName a,
+#top-header #tools a {
+  text-decoration: none;
+  color: black;
+}
+
+#top-header .siteName a:hover,
+#top-header #tools a:hover {
+  color: red;
 }
 
 /* Navigation */
@@ -114,64 +143,58 @@ main img {
   max-width: 100%;
 }
 
-.delorean {
-  display: block;
-  position: absolute;
-  color: #01b0d3;
-  background-color: #54575838;
-  border-radius: 10px;
-  width: 450px;
-  margin-left: 78px;
-  z-index: 1;
-}
-
-.delorean h2 {
-  position: absolute;
-  color: #01b0d3;
-  font-size: 1.7rem;
-  left: 20px;
-  top: -245px;
-}
-
-.delorean p:nth-child(2) {
-  top: -200px;
-}
-.delorean p:nth-child(3) {
-  top: -175px;
-}
-.delorean p:nth-child(4) {
-  top: -151px;
-}
-
-.delorean p {
-  position: absolute;
-  color: #01b0d3;
-  font-weight: bold;
-  /*margin: 0 auto;*/
-  margin-left: 20px;
-}
-
-#delorean {
-  display: block;
+.delorean-container {
   position: relative;
-  max-width: 550px;
-  height: auto;
-  margin-left: 20%;
-  z-index: 0;
+  margin: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delorean-container img {
+  width: 80%;
+  height: 100%;
+  object-fit: contain;
+  margin-left: 40px;
+}
+
+.delorean {
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-clip: border-box;
+  color: #01b0d3;
+  position: absolute;
+  background-color: #bfc3c34c;
+  border: 1px solid rgba(100, 97, 97, 0.2);
+  border-radius: 0.25rem;
+  min-width: 0;
+  top: 0;
+  left: 60px;
+  width: max-content;
+}
+
+.delorean ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.delorean ul li {
+  list-style: none;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 button {
-  display: block;
-  position: absolute;
+  display: inline-block;
   text-align: center;
   font-size: 1.3em;
-  width: 200px;
+  margin: 4px 2px;
+  cursor: pointer;
   color: black;
   background-color: #01b0d3;
   text-decoration: none;
-  margin-top: -81px;
-  margin-left: 90px;
   padding: 10px;
+  border-radius: 3px;
 }
 
 div.page-content {
@@ -211,7 +234,7 @@ div.page-content {
 
 .upgrades .item a {
   font-weight: bold;
-  color: #041735;
+  color: #131314;
 }
 
 .upgrades h3 {
@@ -224,6 +247,7 @@ div.page-content {
   display: block;
   margin: 0 auto;
   height: 90%;
+  background: #5f6364;
   margin-bottom: 15px;
 }
 
@@ -250,7 +274,7 @@ div.page-content {
   font-size: large;
   color: black;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .review li {
@@ -259,143 +283,200 @@ div.page-content {
   margin: 0;
 }
 
-#footer_page {
+.copyright {
   background-color: #333;
   color: #fff;
   text-align: center;
   padding: 10px 0;
 }
 
-.copyright {
-  margin: 0;
-}
+@media (min-width: 48rem) {
+  /* CSS styles for screens larger than 48rem */
 
-/* Media query for responsiveness */
-@media only screen and (max-width: 64rem) {
-  body {
+  /* Adjust the max-width of the #wrapper element */
+  #wrapper {
     max-width: 64rem;
-    margin: 0 auto;
   }
 
-  .header-content {
-    flex-direction: row; /*horizontal layout */
-    justify-content: space-between;
+  /* Increase the font-size of the h1 element */
+  h1 {
+    font-size: 2.5em;
   }
 
-  .header-content #accLink {
-    margin-right: 0; /* Align "My Account" to the right */
+  /* Adjust the padding of the #acctLink element */
+  #acctLink {
+    padding-top: 2%;
   }
 
-  nav {
-    justify-content: space-around;
-    font-size: 1.4rem;
+  /* Increase the font-size of the navigation links */
+  nav a {
+    font-size: 1.4em;
   }
 
-  /* Main content*/
+  /* Adjust the padding of the main content */
   main {
     padding: 30px;
   }
 
-  .delorean {
-    width: 450px;
-    margin-left: auto; /* Center the Delorean image */
-    margin-right: auto;
+  /* Increase the size of the DeLorean image */
+  .delorean-container img {
+    width: 90%;
   }
 
-  #delorean {
-    max-width: 550px;
-    height: auto;
-  }
-
-  button {
-    width: 200px; /* Restore original button width */
-    margin-left: auto; /* Center the button */
-    margin-right: auto;
-  }
-
-  .page-content {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .upgrades .items {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* Footer */
-  #footer_page {
+  /* Adjust the font-size of the DeLorean text */
+  .delorean ul li {
     font-size: 1.2rem;
+  }
+
+  /* Increase the size of the buttons */
+  button {
+    font-size: 1.5em;
+  }
+
+  /* Adjust the layout of the page content */
+  .page-content {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .upgrades {
+    grid-column: 1 / span 2;
+  }
+
+  /* Move the reviews section to the third column */
+  .reviews {
+    grid-column: 3 / 3;
+  }
+
+  /* Increase the font-size of the review headings */
+  .review h3 {
+    font-size: x-large;
+  }
+
+  /* Increase the font-size of the review text */
+  .review li {
+    font-size: large;
+  }
+
+  /* Adjust the layout of the upgrades section */
+  .upgrades {
+    margin-bottom: 2em;
+  }
+
+  /* Increase the font-size of the upgrades headings */
+  .upgrades h3 {
+    font-size: x-large;
+  }
+
+  /* Increase the size of the upgrade images */
+  .upgrades .item img {
+    height: 100%;
+  }
+
+  /* Adjust the layout of the minigrid */
+  #minigrid {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-@media only screen and (max-width: 600px) {
-  body {
-    font-size: 12px;
+@media (max-width: 600px) {
+  /* CSS styles for screens smaller than 600px */
+
+  /* Adjust the max-width of the #wrapper element */
+  #wrapper {
+    max-width: 100%;
   }
 
-  header {
-    flex-direction: column;
-    text-align: center;
+  /* Adjust the font-size of the h1 element */
+  h1 {
+    font-size: 1.5em;
   }
 
-  .page-content {
-    grid-template-columns: 1fr;
+  /* Adjust the padding of the #acctLink element */
+  #acctLink {
+    padding-top: 2%;
   }
 
-  main h1 {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 0;
+  /* Adjust the font-size of the navigation links */
+  nav a {
+    font-size: 1em;
+  }
+
+  /* Adjust the padding of the main content */
+  main {
     padding: 10px;
   }
 
-  h1,
-  h2,
-  h3 {
-    font-size: 0.8rem; /* Relative to body font size */
-  }
-
-  /* navigation for smaller screens */
-  nav {
-    margin-top: 1rem;
-  }
-
-  nav li {
+  /* Adjust the size of the DeLorean image */
+  .delorean-container img {
+    width: 100%;
     margin-left: 0;
-    padding: 5px;
-    margin-bottom: 0.5rem;
-    flex-basis: 100%;
   }
 
-  /* Adjust image  */
   .delorean {
-    width: 100%; /* Make overlay full-width */
-    margin-left: 0;
-    margin-top: -40px;
+    width: 40%;
+    height: 80px;
+    left: 30px;
+    font-size: x-small;
   }
 
-  #delorean {
-    max-width: 90%;
-    margin-left: 5%;
+  /* Adjust the font-size of the DeLorean text */
+  .delorean ul li {
+    font-size: 1rem;
+  }
 
+  /* Adjust the size of the buttons */
+  button {
+    font-size: 1em;
+  }
+
+  /* Adjust the layout of the page content */
+  .page-content {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  /* Move the reviews section below the upgrades section */
+  .reviews {
+    grid-column: 1 / span 2;
+    grid-row: 2 / 2;
+    justify-content: center;
+  }
+
+  /* Adjust the font-size of the review headings */
+  .review h3 {
+    font-size: medium;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Adjust the font-size of the review text */
+  .review li {
+    font-size: small;
+    text-align: center;
+  }
+
+  /* Adjust the layout of the upgrades section */
+  .upgrades {
+    grid-column: 1 / span 2;
+    grid-row: 1 / 1;
+    margin-bottom: 1em;
+  }
+
+  /* Adjust the font-size of the upgrades headings */
+  .upgrades h3 {
+    font-size: medium;
+  }
+
+  /* Adjust the size of the upgrade images */
+  .upgrades .item img {
     height: auto;
   }
 
-  button {
-    max-width: 100%; /* Make button full-width */
-    margin: 1rem 0;
-    margin-top: -145px;
-    margin-left: 20px;
-  }
-
-  /* Stack content elements for better readability on small screens */
-  .upgrades,
-  .reviews {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .upgrades .items {
-    grid-template-columns: 1fr; /* Display upgrades in a single column */
+  /* Adjust the layout of the minigrid */
+  #minigrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 10px;
+    padding-left: 0;
   }
 }
