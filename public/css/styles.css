@@ -300,7 +300,7 @@ div.page-content {
   margin: 1rem;
   width: 300px;
   border: 1px solid black;
-  border-radius: 4px solid black;
+  border-radius: 8px solid black;
   padding: 0.5rem;
   list-style-type: none;
   display: flex;
@@ -311,26 +311,26 @@ div.page-content {
   text-decoration: none;
   color: black;
 }
-#vehicle-details-page {
+#car-details {
   display: flex;
   padding: 1rem;
 }
-#vehicle-details-page img {
+#car-details img {
   width: 50%;
   align-self: center;
 }
-#vehicle-details {
+#car-details {
   padding: 1rem;
 }
-.vehicle-details-list {
+.car-info {
   list-style-type: none;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.vehicle-details-list li {
+.car-info p {
   padding: 0.5rem;
 }
-.vehicle-details-list li:nth-child(even) {
+.car-details p:nth-child(even) {
   background-color: lightgray;
 }
 
@@ -526,7 +526,7 @@ input:required:valid {
     margin: 0 auto;
     width: 100%;
   }
-  #vehicle-details-page {
+  #car-details {
     flex-direction: column;
   }
   form fieldset {
