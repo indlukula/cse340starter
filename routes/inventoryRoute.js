@@ -16,9 +16,7 @@ router.get(
 
 // Route to build inventory by classification view
 router.get(
-  "/type/:classificationId",
-  utilities.handleErrors(invController.buildByClassificationId)
-);
+  "/type/:classificationId", invController.buildByClassificationId)
 
 // Route to build vehicle detail view
 router.get(

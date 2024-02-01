@@ -209,6 +209,7 @@ div.page-content {
 .reviews {
   grid-column: 2 / 2;
   grid-row: 1 / 1;
+  width: 40%;
 }
 
 .review li {
@@ -290,6 +291,101 @@ div.page-content {
   padding: 10px 0;
 }
 
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#inv-display li {
+  margin: 1rem;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 4px solid black;
+  padding: 0.5rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#inv-display li a {
+  text-decoration: none;
+  color: black;
+}
+#vehicle-details-page {
+  display: flex;
+  padding: 1rem;
+}
+#vehicle-details-page img {
+  width: 50%;
+  align-self: center;
+}
+#vehicle-details {
+  padding: 1rem;
+}
+.vehicle-details-list {
+  list-style-type: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.vehicle-details-list li {
+  padding: 0.5rem;
+}
+.vehicle-details-list li:nth-child(even) {
+  background-color: lightgray;
+}
+
+/*CSS for the Login Page*/
+
+form fieldset {
+  background-color: lightgray;
+  width: 50%;
+  margin: auto;
+}
+
+form fieldset input {
+  display: block;
+  width: 100%;
+}
+
+#submit {
+  width: 25%;
+  margin: auto;
+}
+
+form input,
+form label,
+form legend,
+form span {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.form-italics {
+  display: block;
+  margin: 0.5rem;
+}
+
+input:required:invalid,
+input:focus:invalid {
+  /* insert your own styles for invalid form input */
+  background-color: rgb(218, 190, 194);
+}
+
+input:required:valid {
+  /* insert your own styles for valid form input */
+  background-color: rgb(118, 216, 255);
+}
+
+.notice {
+  font-size: larger;
+  color: red;
+  font-style: italic;
+  list-style-type: none;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
 @media (min-width: 48rem) {
   /* CSS styles for screens larger than 48rem */
 
@@ -345,6 +441,7 @@ div.page-content {
   /* Move the reviews section to the third column */
   .reviews {
     grid-column: 3 / 3;
+    width: 40%;
   }
 
   /* Increase the font-size of the review headings */
@@ -417,6 +514,23 @@ div.page-content {
     height: 80px;
     left: 30px;
     font-size: x-small;
+  }
+
+  #vehicle-status {
+    flex-direction: column-reverse;
+    background-color: lightgray;
+    padding: 2rem;
+  }
+  #upgrades-section,
+  #reviews-section {
+    margin: 0 auto;
+    width: 100%;
+  }
+  #vehicle-details-page {
+    flex-direction: column;
+  }
+  form fieldset {
+    width: 80%;
   }
 
   /* Adjust the font-size of the DeLorean text */
