@@ -441,7 +441,7 @@ input:required:valid {
   /* Move the reviews section to the third column */
   .reviews {
     grid-column: 3 / 3;
-    width: 40%;
+    width: 70%;
   }
 
   /* Increase the font-size of the review headings */
