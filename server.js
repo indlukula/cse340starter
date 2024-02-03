@@ -56,14 +56,16 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 
+// Index route
+app.get("/", utilities.handleErrors(baseController.buildHome))
+
 // inventory routes
 app.use("/inv", inventoryRoute)
 
 // Account routes
 app.use("/account", accountRoute)
 
-// Index route
-app.get("/", utilities.handleErrors( baseController.buildHome))
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
