@@ -10,11 +10,14 @@ const session = require("express-session")
 const pool = require('./database/')
 const utilities = require("./utilities/")
 const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require("./routes/accountRoute")
 const baseController = require("./controllers/baseController")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const bodyParser = require("body-parser")
+
 
 /* ***********************
  * Middleware
@@ -37,6 +40,8 @@ app.use(function(req, res, next){
   next()
 })
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 
 /* ***********************
@@ -53,6 +58,9 @@ app.use(static)
 
 // inventory routes
 app.use("/inv", inventoryRoute)
+
+// Account routes
+app.use("/account", accountRoute)
 
 // Index route
 app.get("/", utilities.handleErrors( baseController.buildHome))

@@ -1,20 +1,4 @@
-<!-- content heading -->
-<% if (title) { %>
-   <h1><%= title %></h1>
-   <% } else {
-     res.redirect('/')
-   } %>
-
-   <% messages() %>
-   <% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>
-
-  <div class="login">
+<div class="login">
   <form id="loginForm" action="/account/login" method="post">
     <fieldset>
       <p>
