@@ -1,25 +1,36 @@
-<div class="login">
-  <form id="loginForm" action="/account/login" method="post">
-    <fieldset>
-      <p>
-          <label for="account_email">Email*:</label>
-          <div class="input-wrapper">
-            <input type="email" name="account_email" placeholder="Enter Email" required value="<%= locals.account_email %>">
-          <i class="fas fa-check-circle valid-icon"></i>
-          </div>
-      </p>
-      <div>
-        <label for="account_password">Password**:</label>
-        <div  class="input-wrapper">
-          <input type="password" name="account_password" id="password" placeholder="Enter Password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$">
-          <i class="fas fa-eye" id="togglePassword"></i>
-        </div>
-      </div>
-      <p class="requirements">* required</p>
-        <p class="requirements">** 8 char min, with at least 1 upper, 1 number, 1 special char</p>
-      <button type="submit" id="submit">Log In</button>
-  </fieldset>
-</form>
-  <span class="register">Don't have an account? <a href="/account/register">Register</a></span>
-</div>
-<script src="/js/script.js"></script>
+<!-- content heading -->
+<% if (title) { %>
+   <h1><%= title %></h1>
+   <% } else {
+     res.redirect('/')
+   } %>
+
+   <%- messages() %>
+
+   <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+<div class="register">
+    <form id="registerForm" action="/account/register" method="post">
+        <fieldset>
+            <legend>Make an Account</legend>
+            <i class="form-italics">All fields are required</i>
+            <label for="account_firstname">First Name:</label>
+            <input type="text" id="account_firstname" name="account_firstname" required value="<%= locals.account_firstname %>">
+            <label for="account_lastname">Last Name:</label>
+            <input type="text" id="account_lastname" name="account_lastname" required value="<%= locals.account_lastname %>">
+            <label for="account_email">Email:</label>
+            <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>" placeholder="emailname@gmail.com">
+            <label for="account_password">Password:</label>
+            <input type="password" id="account_password" name="account_password" minlength="12" required placeholder="paSSwoRD@#21" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+            <i class="form-italics">Password must contain at least 8 characters, 1 capital letter, 1 number and 1 special character.</i>
+            <input type="submit" id="submit" value="Register">  
+        </fieldset>
+    </form>
+  </div>
+  <script src="/js/script.js"></script>
