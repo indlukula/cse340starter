@@ -1,6 +1,6 @@
 const utilities = require("../utilities")
 const accountModel = require("../models/account-model")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 
 /* ****************************************
 *  Deliver login view
@@ -61,7 +61,7 @@ async function registerAccount(req, res) {
     account_firstname,
     account_lastname,
     account_email,
-    account_password
+    hashedPassword
   )
   
   if (regResult) {

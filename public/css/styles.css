@@ -596,11 +596,16 @@ input:required:valid {
 }
 
 /*CSS for the Login Page*/
+.login,
+.register {
+  background-color: #3a3a3a;
+}
 
 form fieldset {
-  background-color: lightgray;
+  background-color: rgb(255, 255, 255);
   width: 50%;
   margin: auto;
+  padding: 10px;
 }
 
 form fieldset input {
@@ -655,15 +660,16 @@ form input {
 .form-italics {
   display: block;
   margin: 0.5rem;
-  font-size: smaller;
-  color: rgb(255, 255, 255);
+  font-size: small;
+  font-weight: bold;
+  color: rgb(244, 3, 3);
 }
 
 input:required:invalid,
 input:focus:invalid,
 textarea:required:invalid {
   /* insert your own styles for invalid form input */
-  background-color: rgb(218, 190, 194);
+  background-color: lightgray;
 }
 
 input:required:valid,
