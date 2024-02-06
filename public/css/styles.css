@@ -691,3 +691,104 @@ textarea:required:valid {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin: 1rem;
 }
+
+/* input:required:invalid, */
+input:focus:invalid {
+  /* Change border color to red when input is invalid */
+  border-color: red;
+
+  /* Add a red box shadow when input is invalid */
+  box-shadow: 0 0 5px red;
+}
+
+input:-moz-focusring {
+  /* Change border color to green when input is valid */
+  border-color: green;
+
+  /* Add a green box shadow when input is valid */
+  box-shadow: 0 0 5px green;
+}
+
+input:required:valid {
+  /* Change border color to green when input is valid */
+  border-color: green;
+
+  /* Add a green box shadow when input is valid */
+  box-shadow: 0 0 5px green;
+}
+
+/* Hide the valid icon by default */
+.fas.fa-check-circle.valid-icon {
+  display: none;
+  color: green;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Show the valid icon when the input is valid */
+input:required:valid + .valid-icon {
+  display: inline;
+}
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#inv-display li {
+  margin: 1rem;
+  width: 300px;
+  border: 1px solid black;
+  padding: 0.5rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#inv-display li a {
+  text-decoration: none;
+  color: black;
+}
+#vehicle-details-page {
+  display: flex;
+  padding: 1rem;
+}
+#vehicle-details-page img {
+  width: 50%;
+  align-self: center;
+}
+#vehicle-details {
+  padding: 1rem;
+}
+
+.vehicle-details-list {
+  list-style-type: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.vehicle-details-list li {
+  padding: 0.5rem;
+}
+.vehicle-details-list li:nth-child(even) {
+  background-color: lightgray;
+}
+
+/* Styles for the vehicle details */
+.namePrice {
+  text-align: center;
+}
+
+.namePrice hr {
+  margin: 10px 0;
+}
+
+.namePrice h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.namePrice span {
+  font-size: 1em;
+  color: #333;
+}
