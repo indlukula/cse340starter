@@ -24,7 +24,7 @@ invCont.buildVehicleDetailsPage = async function (req, res, next) {
   const grid = await utilities.buildInventoryDetailView(data)
   let nav = await utilities.getNav()
   const className = data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model
-  res.render("./inventory/inventoryDetails", {
+  res.render("./inventory/detail", {
     title: className,
     nav,
     grid,
@@ -36,7 +36,7 @@ invCont.buildErrorPage = async function (req, res, next) {
   const data = await invModel.getInventoryByInventoryId(inventory_id)
   const grid = await utilities.buildInventoryDetailView(data)
   //let nav = await utilities.getNav()
-  res.render("./inventory/inventoryDetails", {
+  res.render("./inventory/detail", {
     title: ' ',
     nav,
     grid,
