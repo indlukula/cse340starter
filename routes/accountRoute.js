@@ -21,12 +21,29 @@ router.post(
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 )
+// Route to checklogin
+router.get(
+  "/", 
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountManagement))
 
 // Process the login attempt
-router.post("/login", (req, res) => {
+router.post("/login",
   regValidate.loginRules(),
-    regValidate.checkLoginData,
-    res.status(200).send("login process")
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+)
+
+// Process the logout request
+router.get("/logout", function (req, res) {
+  req.session.destroy(function (err) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.clearCookie("jwt")
+      res.redirect("/")
+    }
+  })
 })
 
 
