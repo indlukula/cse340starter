@@ -82,17 +82,27 @@ app.use(async (req, res, next) => {
 * Express Error Handler
 * Place after all other middleware
 *************************/
+// app.use(async (err, req, res, next) => {
+//   let nav = await utilities.getNav()
+//   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+//   let message
+//   if (err.message === "Classification name already exists") {
+//     message = err.message
+//   } else if (err.status == 404) {
+//     message = err.message
+//   } else {
+//     message = 'Oh no! There was a crash. Maybe try a different route?'
+//   }
+//   res.render("errors/error", {
+//     title: err.status || 'Server Error',
+//     message,
+//     nav
+//   })
+// })
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  let message
-  if (err.message === "Classification name already exists") {
-    message = err.message
-  } else if (err.status == 404) {
-    message = err.message
-  } else {
-    message = 'Oh no! There was a crash. Maybe try a different route?'
-  }
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,

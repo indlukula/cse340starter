@@ -27,6 +27,20 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+/* ************************
+ * Constructs the options HTML for classification select element
+ ************************** */
+Util.getClassificationOptions = async function (selectedId) {
+  let data = await invModel.getClassifications();
+  let options = "";
+  data.rows.forEach((row) => {
+    const isSelected =
+      Number(row.classification_id) === Number(selectedId) ? "selected" : "";
+    options += `<option value="${row.classification_id}" ${isSelected}>${row.classification_name}</option>`;
+  });
+  return options;
+};
+
 /* **************************************
  * Build the classification view HTML
  * ************************************ */
@@ -161,7 +175,20 @@ Util.checkLogin = (req, res, next) => {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
- }
+}
+ 
+ /* ****************************************
+ *  Check Account Type for Authorization
+ * ************************************ */
+ Util.checkAccountType = (req, res, next) => {
+  if (res.locals.accountData.account_type == "Employee" || res.locals.accountData.account_type == "Admin") {
+    next()
+  } else {
+    req.flash("notice", "You are not authorized.")
+    return res.redirect("/account/login")
+  }
+}
+ 
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

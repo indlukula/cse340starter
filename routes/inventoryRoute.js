@@ -72,6 +72,15 @@ router.get("/error", utilities.handleErrors(invController.buildErrorPage));
 router.get("/", utilities.handleErrors(invController.buildManagement));
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildEditInventoryPage))
+
+router.get("/delete/:inventory_id", utilities.handleErrors(invController.deleteView))
+
+
+router.use(utilities.checkLogin)
+router.use(utilities.checkAccountType)
+
 // POST
 router.post(
     "/add-classification",
@@ -85,7 +94,20 @@ router.post(
     invValidate.addVehicleRules(),
     invValidate.checkAddVehicleData,
     invController.registerNewVehicle
-  )
+)
+  
+//Post route for the edit inventory page
+// router.post(
+//     "/update/", 
+//     invValidate.addVehicleRules(),
+//     invValidate.checkUpdateData,
+//     utilities.handleErrors(invController.updateInventory)
+// )
+  
+//Post route for delete page
+// router.post(
+//   "/delete", 
+//   invController.deleteItem)
 
 
 module.exports = router;

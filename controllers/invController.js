@@ -46,10 +46,12 @@ invCont.buildErrorPage = async function (req, res, next) {
 invCont.buildManagement = async function (req, res, next) {
   const links = await utilities.buildManagementLinks()
   let nav = await utilities.getNav()
+  const classificationSelect = await utilities.getDropDownClassification()
   res.render("./inventory/management", {
     title: 'Vehicle Management',
     nav,
     links,
+    classificationSelect,
   })
 }
 
@@ -142,6 +144,20 @@ invCont.registerNewVehicle = async function (req, res) {
       dropdown,
     })
   }
+
+  /* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
+  }
+  }
+  
 }
 
 module.exports = invCont
