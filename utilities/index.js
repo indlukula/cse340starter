@@ -131,16 +131,39 @@ Util.buildManagementLinks = async function() {
   return links
 }
 
-Util.getDropDownClassification = async function (req, res, next) {
-  let data = await invModel.getClassifications()
-  let select = '<label for="classification_id">Classification</label>'
-  select += '<select id="classification_id" name="classification_id">'
+// Util.getDropDownClassification = async function (req, res, next) {
+//   let data = await invModel.getClassifications()
+//   let select = '<label for="classification_id">Classification</label>'
+//   select += '<select id="classification_id" name="classification_id">'
+//   data.rows.forEach((row) => {
+//     select += '<option value="' + row.classification_id + '">' + row.classification_name + '</option>'
+//   })
+//   select += "</select>"
+//   return select
+// }
+
+Util.selectClassification = async function (selectedClassificationId) {
+  let data = await invModel.getClassifications();
+  let select = '<label for="classification_id">Select Classification: </label><br>';
+  select += '<select id="classification_id" name="classification_id">';
   data.rows.forEach((row) => {
-    select += '<option value="' + row.classification_id + '">' + row.classification_name + '</option>'
-  })
-  select += "</select>"
-  return select
+    select += '<option value="' + row.classification_id + '"';
+    if (row.classification_id == selectedClassificationId) {
+      select += ' selected';
+    }
+    select += '>' + row.classification_name + '</option>';
+  });
+  select += '</select>';
+  return select;
 }
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next)
 
 /* ****************************************
 * Middleware to check token validity
@@ -180,21 +203,51 @@ Util.checkLogin = (req, res, next) => {
  /* ****************************************
  *  Check Account Type for Authorization
  * ************************************ */
- Util.checkAccountType = (req, res, next) => {
-  if (res.locals.accountData.account_type == "Employee" || res.locals.accountData.account_type == "Admin") {
-    next()
-  } else {
-    req.flash("notice", "You are not authorized.")
-    return res.redirect("/account/login")
+Util.checkAccountType = (req, res, next) => {
+    // Use the checkLogin function
+    Util.checkLogin(req, res, () => {
+      // If checkLogin calls next(), the user is logged in
+
+      console.log("checkAccountType");
+
+      // Check the account type
+      const accountType = res.locals.accountData.account_type;
+      if (!(accountType === "Employee" || accountType === "Admin")) {
+        //  restrict access - Clients not allowed
+        req.flash("notice", "You do not have permission to access that page.");
+        return res.redirect("/account/login");
+      }
+
+      // If the account type is "Employee" or "Admin", proceed to the next middleware
+      next()
+    })
   }
-}
+
+
+
+
+
+//  Util.checkAccountType = (req, res, next) => {
+//   if (res.locals.accountData.account_type === "Employee" || res.locals.accountData.account_type === "Admin") {
+//     next()
+//   } else {
+//     req.flash("notice", "You are not authorized. Please log in!.")
+//     return res.redirect("/account/login")
+//   }
+// }
+
+// Util.checkAccountType =(isLoggedIn, accountType) => {
+//   let managementGrid
+  
+//   if (isLoggedIn && (accountType === "Admin" || accountType === "Employee")) {
+//     managementGrid = '<h2> Inventory Management </h2>'
+//     managementGrid += '<a id="inv-management-button" href="../../inv/" title="Inventory Management View "><h3>Manage Inventory</h3></a>'
+//   }else{
+//     managementGrid = ''
+//   }
+//   return managementGrid
+// }
  
-/* ****************************************
- * Middleware For Handling Errors
- * Wrap other function in this for
- * General Error Handling
- **************************************** */
-Util.handleErrors = (fn) => (req, res, next) =>
-  Promise.resolve(fn(req, res, next)).catch(next)
+
 
 module.exports = Util

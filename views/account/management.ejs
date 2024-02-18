@@ -1,3 +1,4 @@
+<!--   -->
 <% if (title) { %>
     <h1><%= title %></h1>
     <% } else {
@@ -14,4 +15,9 @@
    </ul>
   <% } %>
 
-<p>You're logged in</p>
+ <h2>Welcome <%= locals.accountData.account_firstname %> </h2>
+  <p>You're logged in.</p>
+  <a id="edit-info-button" title="Click to Edit account information" href="/account/update">
+  <h3>Edit Account Information</h3></a>
+
+  <%- checkAccountType %>

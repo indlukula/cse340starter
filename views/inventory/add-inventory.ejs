@@ -16,9 +16,12 @@
   
 <div class="inventory">
     <form action="/inv/add-inventory" method="post">
+
+      <%- classification %>
+
         <fieldset>
                 <div><i>All fields are required.</i></div>
-                <%- dropdown %>
+                
                 <div><i>Please selest the right classification before submitting.</i></div>
                 <label for="inv_make">Make</label>
                 <input type="text" placeholder="Enter make" id="inv_make" name="inv_make" required pattern="[^' ']+[a-zA-Z]" value="<%= locals.inv_make %>"><i class="fas fa-check-circle valid-icon"></i>
