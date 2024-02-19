@@ -200,53 +200,50 @@ Util.checkLogin = (req, res, next) => {
   }
 }
  
- /* ****************************************
- *  Check Account Type for Authorization
- * ************************************ */
-Util.checkAccountType = (req, res, next) => {
-    // Use the checkLogin function
-    Util.checkLogin(req, res, () => {
-      // If checkLogin calls next(), the user is logged in
+//  /* ****************************************
+//  *  Check Account Type for Authorization
+//  * ************************************ */
+// Util.checkAccountType = (req, res, next) => {
+//     // Use the checkLogin function
+//     Util.checkLogin(req, res, () => {
+//       // If checkLogin calls next(), the user is logged in
 
-      console.log("checkAccountType");
+//       console.log("checkAccountType");
 
-      // Check the account type
-      const accountType = res.locals.accountData.account_type;
-      if (!(accountType === "Employee" || accountType === "Admin")) {
-        //  restrict access - Clients not allowed
-        req.flash("notice", "You do not have permission to access that page.");
-        return res.redirect("/account/login");
-      }
+//       // Check the account type
+//       const accountType = res.locals.accountData.account_type;
+//       if (!(accountType === "Employee" || accountType === "Admin")) {
+//         //  restrict access - Clients not allowed
+//         req.flash("notice", "You do not have permission to access that page.");
+//         return res.redirect("/account/login");
+//       }
 
-      // If the account type is "Employee" or "Admin", proceed to the next middleware
-      next()
-    })
+//       // If the account type is "Employee" or "Admin", proceed to the next middleware
+//       next()
+//     })
+//   }
+
+
+ Util.checkAccountType = (req, res, next) => {
+  if (res.locals.accountData.account_type === "Employee" || res.locals.accountData.account_type === "Admin") {
+    next()
+  } else {
+    req.flash("notice", "You are not authorized. Please log in!.")
+    return res.redirect("/account/login")
   }
+}
 
-
-
-
-
-//  Util.checkAccountType = (req, res, next) => {
-//   if (res.locals.accountData.account_type === "Employee" || res.locals.accountData.account_type === "Admin") {
-//     next()
-//   } else {
-//     req.flash("notice", "You are not authorized. Please log in!.")
-//     return res.redirect("/account/login")
-//   }
-// }
-
-// Util.checkAccountType =(isLoggedIn, accountType) => {
-//   let managementGrid
+Util.checkAccountType =(isLoggedIn, accountType) => {
+  let managementGrid
   
-//   if (isLoggedIn && (accountType === "Admin" || accountType === "Employee")) {
-//     managementGrid = '<h2> Inventory Management </h2>'
-//     managementGrid += '<a id="inv-management-button" href="../../inv/" title="Inventory Management View "><h3>Manage Inventory</h3></a>'
-//   }else{
-//     managementGrid = ''
-//   }
-//   return managementGrid
-// }
+  if (isLoggedIn && (accountType === "Admin" || accountType === "Employee")) {
+    managementGrid = '<h2> Inventory Management </h2>'
+    managementGrid += '<a id="inv-management-button" href="../../inv/" title="Inventory Management View "><h3>Manage Inventory</h3></a>'
+  }else{
+    managementGrid = ''
+  }
+  return managementGrid
+}
  
 
 

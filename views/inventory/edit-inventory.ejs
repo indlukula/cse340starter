@@ -15,10 +15,8 @@
   <% } %>
   
 <form action="/inv/update" method="post" id="updateForm">
+   <%- classificationSelect %>
     <fieldset>
-        <div><i>All fields are required.</i></div>
-        <label for="classification_id">Classification</label>
-        <%- dropdown %>
         <div><i>Make sure you chose the right classification before submitting.</i></div>
         <label for="inv_make">Make</label>
         <input type="text" id="inv_make" name="inv_make" required pattern="[^' ']+[a-zA-Z]" value="<%= locals.inv_make %>">

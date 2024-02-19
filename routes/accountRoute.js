@@ -26,7 +26,7 @@ router.post(
 router.get(
   "/", 
   utilities.checkLogin,
-  utilities.handleErrors(accountController.buildAccountManagement))
+  utilities.handleErrors(accountController.account))
 
 // Process the login attempt
 router.post("/login",
@@ -39,6 +39,9 @@ router.post("/login",
 router.get("/update", Util.checkLogin, Util.handleErrors(accountController.update))
 
 router.post("/update", regValidate.updateAccountRules(), regValidate.checkUpdateData, Util.handleErrors(accountController.successUpdateData))
+
+router.post("/change", regValidate.updatePasswordRules(), regValidate.checkUpdateData, Util.handleErrors(accountController.successUpdatePassword))
+
 
 // Route to build manage account page
 router.get(

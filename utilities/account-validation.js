@@ -107,8 +107,8 @@ validate.checkLoginData = async (req, res, next) => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
-  // const { account_firstname, account_lastname, account_email } = req.body
-  const accountData = req.body
+  const { account_firstname, account_lastname, account_email } = req.body
+  // const accountData = req.body
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -117,10 +117,10 @@ validate.checkRegData = async (req, res, next) => {
       errors,
       title: "Registration",
       nav,
-      // account_firstname,
-      // account_lastname,
-      // account_email,
-      ...accountData,
+      account_firstname,
+      account_lastname,
+      account_email,
+      // ...accountData,
     })
     return
   }
