@@ -370,12 +370,12 @@ form span {
 input:required:invalid,
 input:focus:invalid {
   /* insert your own styles for invalid form input */
-  background-color: rgb(218, 190, 194);
+  background-color: rgb(132, 130, 130);
 }
 
 input:required:valid {
   /* insert your own styles for valid form input */
-  background-color: rgb(118, 216, 255);
+  background-color: rgb(132, 130, 130);
 }
 
 .notice {
@@ -669,13 +669,13 @@ input:required:invalid,
 input:focus:invalid,
 textarea:required:invalid {
   /* insert your own styles for invalid form input */
-  background-color: lightgray;
+  background-color: rgb(132, 130, 130);
 }
 
 input:required:valid,
 textarea:required:valid {
   /* insert your own styles for valid form input */
-  background-color: rgb(118, 216, 255);
+  background-color: rgb(132, 130, 130);
 }
 
 .notice {
@@ -812,12 +812,17 @@ p {
   color: #333;
 }
 
-input:required:invalid, textarea:required:invalid{
-  background-color: rgb(235, 187, 187)
+input:required:invalid,
+textarea:required:invalid {
+  background-color: rgb(132, 130, 130);
 }
 
-
-input[type=email], input[type=password], input[type=number],input[type=text], select#classification_id, textarea#inv_description {
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="text"],
+select#classification_id,
+textarea#inv_description {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -827,12 +832,13 @@ input[type=email], input[type=password], input[type=number],input[type=text], se
   box-sizing: border-box;
 }
 
-textarea#inv_description{
+textarea#inv_description {
   resize: none;
   height: 200px;
 }
 
-button[type=submit], input[type=submit] {
+button[type="submit"],
+input[type="submit"] {
   width: 100%;
   background-color: #365486;
   color: white;
@@ -843,13 +849,15 @@ button[type=submit], input[type=submit] {
   cursor: pointer;
 }
 
-button[type=submit]:hover, input[type=submit]:hover {
+button[type="submit"]:hover,
+input[type="submit"]:hover {
   background-color: #ffffff;
   color: #365486;
   border: 1px solid #365486;
 }
 
-form, div.registration-link{
+form,
+div.registration-link {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
@@ -857,21 +865,27 @@ form, div.registration-link{
   margin: auto;
 }
 
-ul.notice{
+ul.notice {
   list-style-type: none;
   color: red;
   font-style: italic;
   font-weight: bold;
 }
 
-a#classification-button,a#inventory-button, a#edit-info-button, a#inv-management-button{
+a#classification-button,
+a#inventory-button,
+a#edit-info-button,
+a#inv-management-button {
   text-decoration: none;
   margin: 10px auto;
   width: 50%;
   display: block;
 }
 
-a#classification-button h2, a#inventory-button h2, a#edit-info-button h3, a#inv-management-button h3{
+a#classification-button h2,
+a#inventory-button h2,
+a#edit-info-button h3,
+a#inv-management-button h3 {
   text-align: center;
   background-color: #365486;
   color: white;
@@ -882,18 +896,21 @@ a#classification-button h2, a#inventory-button h2, a#edit-info-button h3, a#inv-
   cursor: pointer;
 }
 
-a#classification-button h2:hover,a#inventory-button h2:hover, a#edit-info-button h3:hover,  a#inv-management-button h3:hover{
+a#classification-button h2:hover,
+a#inventory-button h2:hover,
+a#edit-info-button h3:hover,
+a#inv-management-button h3:hover {
   background-color: #ffffff;
   color: #365486;
   border: 1px solid #365486;
 }
 
-table#inventoryDisplay{
-  
+table#inventoryDisplay {
   margin: auto;
 }
 
-a#modify-button, a#delete-button{
+a#modify-button,
+a#delete-button {
   text-decoration: none;
   margin: 10px auto;
   width: 100%;
@@ -908,26 +925,25 @@ a#modify-button, a#delete-button{
   cursor: pointer;
 }
 
-a#modify-button:hover, a#delete-button:hover{
+a#modify-button:hover,
+a#delete-button:hover {
   background-color: #ffffff;
   color: #365486;
-
 }
 
-tbody>tr{
+tbody > tr {
   border-radius: 5px;
   background-color: #f2f2f2;
   max-width: 500px;
   margin: auto;
 }
 
-td{
+td {
   padding: 5px;
 }
 
-div.select-classification{
+div.select-classification {
   margin: 10px auto;
-    width: 50%;
-    display: block;
+  width: 50%;
+  display: block;
 }
-
