@@ -8,3 +8,24 @@
    <%# messages() %>
 
    <%- grid %>
+
+   <!-- detail.ejs -->
+<h1>Item Detail</h1>
+
+<h2>Reviews</h2>
+<ul>
+    <% reviews.forEach(review => { %>
+        <li><%= review.review_text %> - <%= review.reviewer_screen_name %></li>
+    <% }); %>
+</ul>
+
+<% if (isLoggedIn) { %>
+    <form action="/reviews" method="POST">
+        <textarea name="reviewText" placeholder="Write your review here" required></textarea>
+        <input type="hidden" name="inventoryId" value="<%= itemId %>">
+        <input type="hidden" name="accountId" value="<%= accountId %>">
+        <button type="submit">Submit Review</button>
+    </form>
+<% } else { %>
+    <p>Please <a href="/login">log in</a> to add a review.</p>
+<% } %>

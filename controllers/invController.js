@@ -264,7 +264,39 @@ invCont.registerNewVehicle = async function (req, res) {
       req.flash("notice", "Sorry, the delete failed.")
       res.redirect("/inv/delete/{inv_id}")
     }
+}
+  
+invCont.getAllReviews = async (req, res) => {
+  try {
+    const reviews = await Reviews.find()
+    res.json(reviews)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
   }
+}
+
+invCont.addReview = async (req, res) => {
+  const { review_text, inv_id, account_id } = req.body
+  const review = new Review({ review_text, inv_id, account_id })
+  try {
+    const newReview = await review.save()
+    res.status(201).json(newReview)
+  } catch (error) {
+    res.status(400).json({ message: error.message})
+  }
+}
+
+invCont.updateReview = async (req, res) => {
+  for (let i = 0; i < reviews.length; i++) {
+    if (reviews[i].id === review_id) {
+      reviews[i].content = newContent
+      return "Review updated successfully"
+    }
+  }
+  return "Review not found"
+}
+
+invCont.deleteReview = 
   
   invCont.buildDeleteInventoryView = async function (req, res, next) {
     const inv_id = parseInt(req.params.inv_id)

@@ -15,6 +15,7 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 router.get("/get-inventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventoryView))
 router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventoryView))
+router.get("/reviews", utilities.handleErrors(invController.getAllReviews))
 
 
 
@@ -28,6 +29,26 @@ router.post(
     invValidate.checkAddClassificationData,
     invController.registerNewClassification
   )
+router.post(
+  "/addReview",
+  invController.addReview
+)
+
+// Add a new review
+router.post("/reviews",
+  invController.addReview
+)
+
+// Edit an existing review
+router.put("/reviews/:id",
+  invController.updateReview
+)
+
+// Delete an existing review
+router.delete("/reviews/:id",
+  invController.deleteReview
+
+)
 
 router.post(
     "/add-inventory",
